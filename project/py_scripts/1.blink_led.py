@@ -6,7 +6,7 @@ sleep(0.1)
 
 #store desired output pin in a variable
 led_pin = 25
-led2_pin = 15
+led2_pin = 20
 
 #configure GPIO Pin as an output pin and create and led object for Pin class
 led = Pin(led_pin, Pin.OUT)
