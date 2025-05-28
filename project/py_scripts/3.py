@@ -1,4 +1,4 @@
-from machine import Pin
+from machine import Pin, ADC
 from time import sleep
 
 # wait for usb to be ready
@@ -27,5 +27,5 @@ while True:
     else:
         led.value(False)
         led2.value(True)
-    print(print(f"Analog: {adc_value}"))
+    print(f"Analog: {adc_value.read_u16()}")
     sleep(0.1)
