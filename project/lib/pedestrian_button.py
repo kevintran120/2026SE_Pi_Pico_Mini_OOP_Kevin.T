@@ -2,6 +2,17 @@ from machine import Pin
 from time import ticks_ms, ticks_diff
 
 class Pedestrian_button(Pin):
+    """
+    a class that gives a button pedestrian button functionality with a timer
+    also adds functionality that sees if theres someone waiting at the light
+
+    arguments:
+        pin (int): GPIO pin number for the button
+
+    examples:
+        button = Pedestrian_Button(22) # button connected to pin 22
+        button.
+    """
     # child class inherits the parent 'pin' class
     def __init__(self, pin, debug):
         super().__init__(pin, Pin.IN, Pin.PULL_DOWN)
@@ -25,8 +36,12 @@ class Pedestrian_button(Pin):
             print(f"Button state on Pin {self.__pin} set to {value}")
     
     def callback(self, pin):
-        current_time = time.ticks_ms() # get the current time in ms
-        if (time.ticks_diff(current_time, self.__last_pressed) > 200): # 200ms debounce delay
+        """
+        changes the button's state when it is pressed
+        also has debounce logic (so you cant double click)
+        """
+        current_time = ticks_ms() # get the current time in ms
+        if (ticks_diff(current_time, self.__last_pressed) > 200): # 200ms debounce delay
             self.__last_pressed = current_time
             self.__pedestrian_waiting = True
             if self.__debug:
