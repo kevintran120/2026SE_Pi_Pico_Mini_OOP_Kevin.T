@@ -20,20 +20,18 @@ class Pedestrian_button(Pin):
         self.__pin = pin
         self.__last_pressed = 0 # tracks the last time the button was pressed
         self.__pedestrian_waiting = False
-        self.button_state
         self.irq(trigger=Pin.IRQ_RISING, handler=self.callback)
         
-    @property
-    def button_state(self):
-        if self.__debug:
-            print(f"Button connected to pin {self.__pin} is {'WAITING' if self.__pedestrian_waiting else 'NOT WAITING'}")
-        return self.__pedestrian_waiting
-    
-    @button_state.setter
-    def button_state(self, value):
-        self.__pedestrian_waiting = value
-        if self.__debug:
-            print(f"Button state on Pin {self.__pin} set to {value}")
+    def button_state(self, value=None):
+        if value is None:
+            # getter
+            if self.__debug:
+                print(f"Button connected to Pin {self.__pin} is {'WAITING' if self.__pedestrian_waiting else 'NOT WAITING'}")
+            return self.__pedestrian_waiting
+        else:
+            self.__pedestrian_waiting = bool(value) # convert to bool to ensure proper value type
+            if self.__debug:
+                print(f"Button state on pin {self.__pin} set to {self.__pedestrian_waiting}")
     
     def callback(self, pin):
         """
