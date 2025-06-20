@@ -1,7 +1,7 @@
 from machine import Pin
 from time import ticks_ms, ticks_diff
 
-class Pedestrian_button(Pin):
+class Pedestrian_Button(Pin):
     """
     a class that gives a button pedestrian button functionality with a timer
     also adds functionality that sees if theres someone waiting at the light
