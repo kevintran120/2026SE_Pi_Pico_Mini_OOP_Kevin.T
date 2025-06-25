@@ -6,13 +6,12 @@ import random
 button = Pedestrian_Button(22, False)
 buzzer = Audio_Notification(27, False)
 
-j = 100
+freq = 100
 while True:
-    freq = random.randrange(j, 22000)
     if button.value():
-        buzzer.beep(freq=freq, duration=100)
-        j += 100
-        print(j)
+        freq += 100
+        buzzer.beep(freq=freq, duration=150)
     else:
-        buzzer.duty_u16(0)
-    sleep(0.01)
+        if freq > 150:
+            freq -= 5
+    print(freq)
