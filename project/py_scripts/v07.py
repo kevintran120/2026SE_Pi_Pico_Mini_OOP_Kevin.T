@@ -5,7 +5,7 @@ from controller import TrafficLightSubsystem, PedestrianSubsystem
 from time import sleep, time
 
 red_light = Led_Light(3, False, False)
-amber_light = Led_Light(5, False, False)
+amber_light = Led_Light(5, True, False)
 green_light = Led_Light(6, False, False)
 
 p_red_light = Led_Light(19, True, False)

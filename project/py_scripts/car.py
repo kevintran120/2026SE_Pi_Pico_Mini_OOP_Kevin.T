@@ -5,7 +5,7 @@ from time import sleep
 button = Pedestrian_Button(22, False)
 buzzer = PWM(Pin(27))
 
-buzzer.duty_u16(30000)
+buzzer.duty_u16(4000)
 freq = 100
 while True:
     if button.value():
